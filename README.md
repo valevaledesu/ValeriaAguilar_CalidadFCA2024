@@ -1,2 +1,2 @@
-# ValeriaAguilar_CalidadFCA2024
-Nuevo Repo de Calidad de Software funcional
+# PatyOrtegonCalidad2024
+Repo para la clase de calidad
