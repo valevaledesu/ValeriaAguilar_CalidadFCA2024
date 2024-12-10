@@ -32,7 +32,7 @@ jobs:
           command: mvn -Dtest=com.fca.calidad.service.UserServiceTest test
       - run: 
           name: Pruebas Katalon
-          command: mvn -Dtest=CRUDTest test
+          command: mvn -Dtest=crudTest test
       - store_test_results:
           path: target/surefire-reports
       # Then run your tests!
