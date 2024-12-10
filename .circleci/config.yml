@@ -24,10 +24,19 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
-      # Then run your tests!
       - run:
-          name: Test
-          command: mvn test
+          name: Calculadora
+          command: mvn -Dtest=CalculadoraTest test
+      - run:
+          name: Pruebas mockito
+          command: mvn -Dtest=com.fca.calidad.service.UserServiceTest test
+      - run: 
+          name: Pruebas Katalon
+          command: mvn -Dtest=CRUDTest test
+      - store_test_results:
+          path: target/surefire-reports
+      # Then run your tests!
+      
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
