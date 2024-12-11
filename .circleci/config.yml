@@ -21,10 +21,11 @@ jobs:
       # Checkout the code as the first step.
       - browser-tools/install-browser-tools
       - checkout
-      - run: google-chrome --version
+      
       
 
       # Use mvn clean and package as the standard maven build phase
+      - run: google-chrome --version
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
