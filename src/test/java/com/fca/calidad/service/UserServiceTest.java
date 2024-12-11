@@ -29,7 +29,7 @@ void setup(){
         servicio = new UserService(dao);
         baseDedatos = new HashMap<>();
 }
-/* 
+
 @Test
 void updateTest() {
 
@@ -58,7 +58,7 @@ void updateTest() {
      assertThat(result.getName(), is("nombreNuevo"));
      assertThat(result.getPassword(), is("password456"));
 }
-     */
+     
     @Test
     void crearUsuario () {
 
