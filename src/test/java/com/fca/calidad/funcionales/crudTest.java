@@ -24,7 +24,7 @@ public class crudTest {
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  private JavascriptExecutor js;
+  JavascriptExecutor js;
 
   @Before
   public void setUp() throws Exception {
