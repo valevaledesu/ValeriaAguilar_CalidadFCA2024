@@ -24,6 +24,7 @@ jobs:
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
+      # Then run your tests!
       - run:
           name: Calculadora
           command: mvn -Dtest=CalculadoraTest test
@@ -36,7 +37,6 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
       # Then run your tests!
-      
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
