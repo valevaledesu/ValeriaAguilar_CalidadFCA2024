@@ -69,23 +69,29 @@ public class crudTest {
     //ERROR: Caught exception [unknown command []]
   }
 
-  @Test
-  public void testEditar() throws Exception {
+ @Test
+public void testEditar() throws Exception {
     driver.get("https://mern-crud-mpfr.onrender.com/");
-    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr[4]/td[5]/button")).click();
-    Thread.sleep(1000);
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).clear();
-    driver.findElement(By.name("name")).sendKeys("Editar");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("//i")).click();
-    driver.navigate().refresh();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-    WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/table/tbody/tr[1]/td[1]")));
+
+    // Click en el botón de editar
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    WebElement editButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr[4]/td[5]/button")));
+    editButton.click();
+
+    // Editar el campo de nombre
+    WebElement nameField = wait.until(ExpectedConditions.elementToBeClickable(By.name("name")));
+    nameField.clear();
+    nameField.sendKeys("Editar");
+
+    // Guardar los cambios
+    WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")));
+    saveButton.click();
+
+    // Esperar la confirmación
+    WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table/tbody/tr[1]/td[contains(text(),'Editar')]")));
     assertEquals("Editar", confirmationMessage.getText());
-  }
+}
+
 
   @Test
   public void testDelete() throws Exception {
