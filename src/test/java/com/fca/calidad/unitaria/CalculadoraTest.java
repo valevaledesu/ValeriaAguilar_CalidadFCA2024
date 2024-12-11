@@ -17,7 +17,7 @@ public class CalculadoraTest {
    void suma2numerosPositivosTest() {
     //iniciar
     double num1 = 2;
-    double num2 = 5;
+    double num2 = 10;
     double resultado = 7;
     Calculadora calculadora = new Calculadora();
 
