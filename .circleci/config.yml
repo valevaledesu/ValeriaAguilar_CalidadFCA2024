@@ -29,7 +29,7 @@ jobs:
           command: mvn -Dtest=CalculadoraTest test
       - run:
           name: Pruebas mockito
-          command: mvn -Dtest=com.fca.calidad.service.UserServiceTest test
+          command: mvn -Dtest=UserServiceTest test
       - run: 
           name: Pruebas Katalon
           command: mvn -Dtest=crudTest test
