@@ -1,34 +1,30 @@
 package com.fca.calidad.funcionales;
 
 
-import java.time.Duration;
-
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.time.Duration;
 
 public class crudTest {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
   private StringBuffer verificationErrors = new StringBuffer();
-  private JavascriptExecutor js;
+  JavascriptExecutor js;
 
   @Before
   public void setUp() throws Exception {
@@ -72,20 +68,20 @@ public class crudTest {
     assertEquals("Nice one!", confirmationMessage.getText());
     //ERROR: Caught exception [unknown command []]
   }
-
-  @Test
-  public void testEditar() throws Exception {
-    driver.get("https://mern-crud-mpfr.onrender.com/");
-    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr[4]/td[5]/button")).click();
-    Thread.sleep(1000);
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).click();
-    driver.findElement(By.name("name")).clear();
-    driver.findElement(By.name("name")).sendKeys("Editar");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("//i")).click();
-    driver.navigate().refresh();
+	
+@Test
+  public void testEdit() throws Exception {
+	  driver.get("https://mern-crud-mpfr.onrender.com/");
+	    driver.findElement(By.xpath("//div[@id='root']/div/div[2]/table/tbody/tr/td[5]/button")).click();
+	    Thread.sleep(1000); // Wait for 4 seconds
+	    driver.findElement(By.name("name")).click();
+	    driver.findElement(By.name("name")).click();
+	    driver.findElement(By.name("name")).click();
+	    driver.findElement(By.name("name")).clear();
+	    driver.findElement(By.name("name")).sendKeys("Editar");
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Woah!'])[1]/following::button[1]")).click();
+	    driver.findElement(By.xpath("//i")).click();
+	    driver.navigate().refresh();
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     WebElement confirmationMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div/div[2]/table/tbody/tr[1]/td[1]")));
     assertEquals("Editar", confirmationMessage.getText());

@@ -29,7 +29,7 @@ void setup(){
         servicio = new UserService(dao);
         baseDedatos = new HashMap<>();
 }
-/* 
+/*
 @Test
 void updateTest() {
 
@@ -102,7 +102,7 @@ void updateTest() {
         for (User user : baseDedatos.values()) {
             System.out.println("Nombre:" + user.getName() + user.getEmail() + user.getPassword());
 
-        }
+     }
 
         //mock para devolver array de usuarios simulados o falsos
         when(dao.findAll()).thenReturn(List.copyOf(baseDedatos.values()));
