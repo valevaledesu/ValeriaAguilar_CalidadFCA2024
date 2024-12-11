@@ -99,10 +99,15 @@ void updateTest() {
         baseDedatos.put(usuario2.getId(), usuario2);
         baseDedatos.put(usuario3.getId(), usuario3);
 
-        for (User user : baseDedatos.values()) {
-            System.out.println("Nombre:" + user.getName() + user.getEmail() + user.getPassword());
+        for (User user : result) {
+	        assertThat(basedatos.containsKey(user.getId()), is(true));
+	        User userInDB = basedatos.get(user.getId());
+	        assertThat(user.getName(), is(userInDB.getName()));
+	        assertThat(user.getEmail(), is(userInDB.getEmail()));
+	        assertThat(user.getPassword(), is(userInDB.getPassword()));
+	  }
 
-        }
+   }
 
         //mock para devolver array de usuarios simulados o falsos
         when(dao.findAll()).thenReturn(List.copyOf(baseDedatos.values()));
