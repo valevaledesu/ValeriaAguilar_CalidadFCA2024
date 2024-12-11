@@ -22,7 +22,7 @@ public class daoUserSQLite implements IDAOUser {
 			// Establish the driver connector
 			//Class.forName(DRIVER_NAME);
 			// Set the URI for connecting the MySql database
-			con = DriverManager.getConnection("jdbc:sqlite:c:\\Users\\valer\\workspace\\db_integration_test.db", "", "");
+			con = DriverManager.getConnection("jdbc:sqlite:db_integration_test.db", "", "");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -130,7 +130,7 @@ public class daoUserSQLite implements IDAOUser {
 			// Set the values to match in the ? on query
 			preparedStatement.setString(1, email);
 			rs = preparedStatement.executeQuery();
-
+			if(rs.next()== false) return null;
 			// Obtain the pointer to the data in generated table
 			rs.next();
 

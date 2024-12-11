@@ -141,14 +141,14 @@ void updateTest() {
 
     @Test
     void eliminarUsuario() {
-        boolean result = servicio.deleteUser(1);
-        assertTrue(result);
 
         when(dao.deleteById(1)).thenReturn(true);
         when(dao.deleteById(2)).thenReturn(false);
+        boolean result = servicio.deleteUser(1);
+        assertTrue(result);
 
         result = servicio.deleteUser(2);
-        assertFalse(result);
+        assertFalse(result);      
     }
 }
 
